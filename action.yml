@@ -1,0 +1,37 @@
+name: 'VPNC GitHub action'
+description: 'Allows running some commnd under a VPNC'
+branding:
+  color: red
+  icon: alert-triangle
+
+inputs:
+  gateway:
+    description: VPNC gateway for IPSec
+    required: true
+  id:
+    description: VPNC ID for IPSec
+    required: true
+  secret:
+    description: VPNC secret for IPSec
+    required: true
+  username:
+    description: VPNC username
+    required: true
+  password:
+    description: VPNC password
+    required: true
+  domain:
+    description: VPNC domain
+    required: false
+    default: ''
+
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.gateway }}
+    - ${{ inputs.id }}
+    - ${{ inputs.secret }}
+    - ${{ inputs.username }}
+    - ${{ inputs.password }}
+    - ${{ inputs.domain }}
