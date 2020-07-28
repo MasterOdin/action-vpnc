@@ -24,14 +24,17 @@ inputs:
     description: VPNC domain
     required: false
     default: ''
+  command:
+    description: command to run
+    required: true
 
 runs:
   using: docker
   image: Dockerfile
-  args:
-    - ${{ inputs.gateway }}
-    - ${{ inputs.id }}
-    - ${{ inputs.secret }}
-    - ${{ inputs.username }}
-    - ${{ inputs.password }}
-    - ${{ inputs.domain }}
+  env:
+    gateway: ${{ inputs.gateway }}
+    id: ${{ inputs.id }}
+    secret: ${{ inputs.secret }}
+    username: ${{ inputs.username }}
+    password: ${{ inputs.password }}
+    domain: ${{ inputs.domain }}
